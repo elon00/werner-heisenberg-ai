@@ -1,0 +1,54 @@
+{
+  "mcpServers": {
+    "werner-heisenberg-ai": {
+      "command": "cargo",
+      "args": [
+        "run",
+        "--release",
+        "--quiet"
+      ],
+      "env": {
+        "RUST_LOG": "info",
+        "TITAN_PROTOCOL": "HEISENBERG",
+        "FIPS_203_LEVEL": "ML-KEM-768",
+        "FIPS_204_LEVEL": "ML-DSA-65"
+      },
+      "tools": [
+        {
+          "name": "evaluate_uncertainty_commutator",
+          "description": "Calculates operator commutation brackets [X, P] and verifies uncertainty threshold Delta x Delta p >= hbar / 2",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "delta_x": {
+                "type": "number"
+              },
+              "delta_p": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "delta_x",
+              "delta_p"
+            ]
+          }
+        },
+        {
+          "name": "diagonalize_quantum_hamiltonian",
+          "description": "Performs matrix diagonalization of infinite-dimensional quantum observable matrices",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "matrix_dimension": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "matrix_dimension"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
